@@ -210,6 +210,7 @@ impl fmt::Debug for TypeDebug<'_, '_, '_> {
                     }
                 )
             }
+            Type::Void => writeln!(f, "{:indent$}> Void", "", indent = self.depth * 2),
         }
     }
 }

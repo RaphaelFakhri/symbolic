@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+**Breaking Changes**
+
+- Add a `Void` variant to the exhaustive `symbolic_debuginfo::Type`. ([#1100](https://github.com/getsentry/symbolic/pull/1100))
+
+**Features**
+
+- Resolve `void` pointers in variable types as pointers to `Type::Void`. ([#1100](https://github.com/getsentry/symbolic/pull/1100))
+
 ## 14.0.0-alpha.4
 
 **Breaking Changes**

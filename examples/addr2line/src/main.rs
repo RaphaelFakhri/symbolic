@@ -46,6 +46,7 @@ fn print_type(session: &ObjectDebugSession<'_>, ty: &TypeRef, max_depth: usize) 
             print_type(session, &t.pointee, max_depth - 1)?;
             print!("*")
         }
+        Type::Void => print!("void"),
     }
 
     Ok(())

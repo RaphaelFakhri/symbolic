@@ -186,6 +186,11 @@ enum DwarfTypeRefInner {
     },
     /// A type signature.
     Signature(DebugTypeSignature),
+    /// A missing type reference.
+    ///
+    /// Technically this is not a DWARF type reference; rather, it indicates the absence of one.
+    /// This can be used for `void` pointers, for example.
+    Void,
 }
 
 /// DWARF section information including its data.
@@ -2001,7 +2006,8 @@ impl<'data> DwarfDebugSession<'data> {
                 offset,
             } => Some(info.find_types_unit_offset(*offset)?),
             DwarfTypeRefInner::Signature(signature) => info.find_type_signature(*signature)?,
-            _ => None,
+            DwarfTypeRefInner::Offset { .. } => None,
+            DwarfTypeRefInner::Void => return Ok(Some(Type::Void)),
         };
         let Some((unit, offset)) = unit else {
             return Ok(None);

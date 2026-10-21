@@ -35,6 +35,10 @@ pub enum Type<'data> {
     Primitive(PrimitiveType<'data>),
     /// A pointer type.
     Pointer(PointerType),
+    /// The `void` type.
+    ///
+    /// Represents the absence of a type, for example the pointee of a `void*`.
+    Void,
 }
 
 /// A primitive type.

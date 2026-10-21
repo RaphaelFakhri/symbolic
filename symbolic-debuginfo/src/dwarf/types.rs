@@ -1,6 +1,6 @@
 use gimli::{AttributeValue, DebuggingInformationEntry, UnitOffset, constants};
 
-use crate::dwarf::{DwarfError, Slice, UnitRef};
+use crate::dwarf::{DwarfError, DwarfTypeRef, DwarfTypeRefInner, Slice, UnitRef};
 use crate::{PointerType, PrimitiveType, PrimitiveTypeEncoding, Type, TypeRef, TypeSize};
 
 pub fn parse_type<'d>(
@@ -70,7 +70,7 @@ fn parse_pointer_type<'d>(
     unit: UnitRef<'d, '_>,
     entry: DebuggingInformationEntry<Slice<'d>>,
 ) -> Option<PointerType> {
-    let mut pointee = None;
+    let mut pointee = Some(DwarfTypeRef(DwarfTypeRefInner::Void));
     let mut size = None;
 
     for attr in entry.attrs {

@@ -605,6 +605,8 @@ impl<'a> SymCacheConverter<'a> {
                 _reserved: [0; _],
             }
             .into(),
+            // SymCaches cannot yet represent `void`, so it is treated as an unknown type.
+            di::Type::Void => return u32::MAX,
         };
 
         self.types.insert_full(ty).0 as u32

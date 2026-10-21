@@ -270,12 +270,21 @@ pub struct PointerType {
     pub _reserved: [u8; 4],
 }
 
+/// A representation of the `void` type.
+#[derive(Clone, Copy, Debug, Hash, PartialEq, Eq)]
+#[repr(C)]
+pub struct VoidType {
+    /// Padding.
+    pub _reserved: [u8; 12],
+}
+
 pub mod ty {
     use super::*;
 
     crate::utils::tagged_union! {
         primitive: PrimitiveType,
         pointer: PointerType,
+        void: VoidType,
     }
 }
 
@@ -347,6 +356,7 @@ unsafe impl Pod for VariableLocationInfo {}
 unsafe impl Pod for Type {}
 unsafe impl Pod for PrimitiveType {}
 unsafe impl Pod for PointerType {}
+unsafe impl Pod for VoidType {}
 
 #[cfg(test)]
 mod tests {

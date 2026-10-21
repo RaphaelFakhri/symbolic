@@ -83,6 +83,7 @@ impl<'data> SymCache<'data> {
                 size: TypeSize::Bytes(pointer.size.into()),
                 pointee: (pointer.pointee_idx != u32::MAX).then_some(TypeId(pointer.pointee_idx)),
             }),
+            raw::ty::Enum::void(_) => Type::Void,
         })
     }
 

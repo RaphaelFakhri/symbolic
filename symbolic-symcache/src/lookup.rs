@@ -116,6 +116,10 @@ pub enum Type<'data> {
     Primitive(PrimitiveType<'data>),
     /// A pointer type.
     Pointer(PointerType),
+    /// The `void` type.
+    ///
+    /// Represents the absence of a type, for example the pointee of a `void*`.
+    Void,
 }
 
 /// A primitive type contained in the SymCache.
@@ -160,7 +164,8 @@ impl PointerType {
 
     /// The referenced type.
     ///
-    /// This returns `None` for pointers without a referenced type, like `void*`.
+    /// This returns `None` if the referenced type is unknown. For `void*`, the referenced type
+    /// resolves to [`Type::Void`].
     pub fn pointee(&self) -> Option<TypeId> {
         self.pointee
     }

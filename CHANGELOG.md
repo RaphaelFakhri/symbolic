@@ -9,6 +9,7 @@
 **Features**
 
 - Resolve `void` pointers in variable types as pointers to `Type::Void`. ([#1100](https://github.com/getsentry/symbolic/pull/1100))
+- Store `void` types in symcaches and add `symbolic_symcache::Type::Void` to distinguish `void` pointers from pointers to unknown types. ([#1101](https://github.com/getsentry/symbolic/pull/1101))
 
 ## 14.0.0-alpha.4
 
